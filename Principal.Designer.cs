@@ -63,6 +63,7 @@
             menuHotel_Reservas.ShortcutKeys = Keys.Control | Keys.R;
             menuHotel_Reservas.Size = new Size(223, 22);
             menuHotel_Reservas.Text = "Reservas";
+            menuHotel_Reservas.Click += menuHotel_Reservas_Click;
             // 
             // menuHotelSalir
             // 
@@ -81,6 +82,7 @@
             menuAcercaDe.Size = new Size(80, 20);
             menuAcercaDe.Text = "Acerca de...";
             menuAcercaDe.ToolTipText = "Muesra información de la aplicación";
+            menuAcercaDe.Click += menuAcercaDe_Click;
             // 
             // barra
             // 
@@ -99,6 +101,7 @@
             barraReservas.Size = new Size(56, 35);
             barraReservas.Text = "Reservas";
             barraReservas.TextImageRelation = TextImageRelation.ImageAboveText;
+            barraReservas.Click += barraReservas_Click;
             // 
             // Principal
             // 
