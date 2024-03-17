@@ -17,8 +17,8 @@ namespace Caribe
             switch (opcion)
             {
                 case "Reservas":
-                    Form reservas = new Reservas();
-                    reservas.ShowDialog();
+                    Form listaReservas = new ListaReservas();   
+                    listaReservas.ShowDialog();
                     break;
                 case "Salir":
                     this.Close();

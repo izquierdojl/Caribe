@@ -1,6 +1,6 @@
 ﻿namespace Caribe
 {
-    partial class Reservas
+    partial class ListaReservas
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,9 @@
         {
             barraReservas = new ToolStrip();
             btnSalir = new ToolStripButton();
-            toolStripButton1 = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            btnEditar = new ToolStripButton();
+            toolbtnAnadir = new ToolStripButton();
+            toolBtnEditar = new ToolStripButton();
+            toolBtnBorrar = new ToolStripButton();
             panel1 = new Panel();
             tablaReservas = new DataGridView();
             Fecha = new DataGridViewTextBoxColumn();
@@ -45,7 +45,7 @@
             // 
             // barraReservas
             // 
-            barraReservas.Items.AddRange(new ToolStripItem[] { btnSalir, toolStripButton1, toolStripButton2, btnEditar });
+            barraReservas.Items.AddRange(new ToolStripItem[] { btnSalir, toolbtnAnadir, toolBtnEditar, toolBtnBorrar });
             barraReservas.Location = new Point(0, 0);
             barraReservas.Name = "barraReservas";
             barraReservas.Size = new Size(1165, 38);
@@ -62,35 +62,36 @@
             btnSalir.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSalir.ToolTipText = "Pulse para abandonar";
             // 
-            // toolStripButton1
+            // toolbtnAnadir
             // 
-            toolStripButton1.Image = Properties.Resources.anadir;
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(45, 35);
-            toolStripButton1.Text = "Nueva";
-            toolStripButton1.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolStripButton1.ToolTipText = "Pulse para añadir reserva";
+            toolbtnAnadir.Image = Properties.Resources.anadir;
+            toolbtnAnadir.ImageTransparentColor = Color.Magenta;
+            toolbtnAnadir.Name = "toolbtnAnadir";
+            toolbtnAnadir.Size = new Size(45, 35);
+            toolbtnAnadir.Text = "Nueva";
+            toolbtnAnadir.TextImageRelation = TextImageRelation.ImageAboveText;
+            toolbtnAnadir.ToolTipText = "Pulse para añadir reserva";
+            toolbtnAnadir.Click += toolbtnAnadir_Click;
             // 
-            // toolStripButton2
+            // toolBtnEditar
             // 
-            toolStripButton2.Image = Properties.Resources.editar;
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(41, 35);
-            toolStripButton2.Text = "Editar";
-            toolStripButton2.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolStripButton2.ToolTipText = "Pulse para añadir reserva";
+            toolBtnEditar.Image = Properties.Resources.editar;
+            toolBtnEditar.ImageTransparentColor = Color.Magenta;
+            toolBtnEditar.Name = "toolBtnEditar";
+            toolBtnEditar.Size = new Size(41, 35);
+            toolBtnEditar.Text = "Editar";
+            toolBtnEditar.TextImageRelation = TextImageRelation.ImageAboveText;
+            toolBtnEditar.ToolTipText = "Pulse para añadir reserva";
             // 
-            // btnEditar
+            // toolBtnBorrar
             // 
-            btnEditar.Image = Properties.Resources.borrar;
-            btnEditar.ImageTransparentColor = Color.Magenta;
-            btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(43, 35);
-            btnEditar.Text = "Borrar";
-            btnEditar.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnEditar.ToolTipText = "Pulse para borrar reserva";
+            toolBtnBorrar.Image = Properties.Resources.borrar;
+            toolBtnBorrar.ImageTransparentColor = Color.Magenta;
+            toolBtnBorrar.Name = "toolBtnBorrar";
+            toolBtnBorrar.Size = new Size(43, 35);
+            toolBtnBorrar.Text = "Borrar";
+            toolBtnBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            toolBtnBorrar.ToolTipText = "Pulse para borrar reserva";
             // 
             // panel1
             // 
@@ -134,14 +135,14 @@
             Teléfono.Name = "Teléfono";
             Teléfono.ReadOnly = true;
             // 
-            // Reservas
+            // ListaReservas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1165, 564);
             Controls.Add(panel1);
             Controls.Add(barraReservas);
-            Name = "Reservas";
+            Name = "ListaReservas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Listado de Reservas";
             barraReservas.ResumeLayout(false);
@@ -155,10 +156,10 @@
         #endregion
 
         private ToolStrip barraReservas;
-        private ToolStripButton btnEditar;
+        private ToolStripButton toolBtnBorrar;
         private ToolStripButton btnSalir;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
+        private ToolStripButton toolbtnAnadir;
+        private ToolStripButton toolBtnEditar;
         private Panel panel1;
         private DataGridView tablaReservas;
         private DataGridViewTextBoxColumn Fecha;
