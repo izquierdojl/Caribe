@@ -1,10 +1,19 @@
+using Caribe.Reservas.Modelo;
+using System.Collections;
+
 namespace Caribe
 {
     public partial class Principal : Form
     {
+
+        ArrayList arrayReservas;
+        AlmacenReservas dbReservas;
+
         public Principal()
         {
             InitializeComponent();
+            arrayReservas = new ArrayList(); // almaceno un array list
+            dbReservas = new AlmacenReservas(arrayReservas); // creo un objeto almacén para gesionarlo
         }
 
         private void menuHotelSalir_Click(object sender, EventArgs e)
@@ -17,7 +26,7 @@ namespace Caribe
             switch (opcion)
             {
                 case "Reservas":
-                    Form listaReservas = new ListaReservas();   
+                    Form listaReservas = new ListaReservas(dbReservas);   
                     listaReservas.ShowDialog();
                     break;
                 case "Salir":
