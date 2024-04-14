@@ -35,6 +35,7 @@
             toolBtnBorrar = new ToolStripButton();
             panel1 = new Panel();
             tablaReservas = new DataGridView();
+            Id = new DataGridViewTextBoxColumn();
             Fecha = new DataGridViewTextBoxColumn();
             Contacto = new DataGridViewTextBoxColumn();
             Teléfono = new DataGridViewTextBoxColumn();
@@ -81,7 +82,8 @@
             toolBtnEditar.Size = new Size(41, 35);
             toolBtnEditar.Text = "Editar";
             toolBtnEditar.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolBtnEditar.ToolTipText = "Pulse para añadir reserva";
+            toolBtnEditar.ToolTipText = "Pulse para editar reserva";
+            toolBtnEditar.Click += toolBtnEditar_Click;
             // 
             // toolBtnBorrar
             // 
@@ -92,13 +94,15 @@
             toolBtnBorrar.Text = "Borrar";
             toolBtnBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
             toolBtnBorrar.ToolTipText = "Pulse para borrar reserva";
+            toolBtnBorrar.Click += toolBtnBorrar_Click;
             // 
             // panel1
             // 
             panel1.Controls.Add(tablaReservas);
-            panel1.Location = new Point(0, 41);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 38);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1165, 525);
+            panel1.Size = new Size(1165, 526);
             panel1.TabIndex = 1;
             // 
             // tablaReservas
@@ -107,15 +111,23 @@
             tablaReservas.AllowUserToDeleteRows = false;
             tablaReservas.AllowUserToOrderColumns = true;
             tablaReservas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tablaReservas.Columns.AddRange(new DataGridViewColumn[] { Fecha, Contacto, Teléfono });
+            tablaReservas.Columns.AddRange(new DataGridViewColumn[] { Id, Fecha, Contacto, Teléfono });
             tablaReservas.Dock = DockStyle.Fill;
             tablaReservas.Location = new Point(0, 0);
             tablaReservas.MultiSelect = false;
             tablaReservas.Name = "tablaReservas";
             tablaReservas.ReadOnly = true;
             tablaReservas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tablaReservas.Size = new Size(1165, 525);
+            tablaReservas.Size = new Size(1165, 526);
             tablaReservas.TabIndex = 0;
+            tablaReservas.DoubleClick += toolBtnEditar_Click;
+            tablaReservas.KeyDown += tablaReservas_KeyDown;
+            // 
+            // Id
+            // 
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
             // 
             // Fecha
             // 
@@ -162,6 +174,7 @@
         private ToolStripButton toolBtnEditar;
         private Panel panel1;
         private DataGridView tablaReservas;
+        private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Fecha;
         private DataGridViewTextBoxColumn Contacto;
         private DataGridViewTextBoxColumn Teléfono;

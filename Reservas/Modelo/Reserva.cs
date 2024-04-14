@@ -24,9 +24,6 @@ namespace Caribe.Reservas.Modelo
             this.Fecha = fecha;
             this.Contacto = contacto;
             this.Telefono = telefono;
-
-
-
         }
 
         public int Id { get => id; set => id = value; }

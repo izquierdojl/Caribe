@@ -15,7 +15,7 @@ namespace Caribe.Reservas
     public partial class DetalleReserva : Form
     {
 
-        private int modo; // 1 - Añadir   2 - Editar  3 - Borrar
+        private int modo; // 1 - Añadir   2 - Editar  
         private AlmacenReservas dbReservas;
         private ListaReservas formListaReservas;
         private Reserva reserva;
@@ -26,11 +26,18 @@ namespace Caribe.Reservas
 
             this.dbReservas = dbReservas;
             this.formListaReservas = formListaReservas;
+            this.modo = modo;
 
-            if( modo == 1 )
+            if( modo == 1 ) // añadir
             {
                 this.reserva = new Reserva();
                 txtFecha.Value = DateTime.Now;
+            }else if( modo == 2 ) // editar
+            {
+                this.reserva = dbReservas.obtener(id);
+                txtFecha.Value  = reserva.Fecha;
+                txtContacto.Text = reserva.Contacto;    
+                txtTelefono.Text = reserva.Telefono;   
             }
 
         }
@@ -45,7 +52,10 @@ namespace Caribe.Reservas
             reserva.Fecha = txtFecha.Value;
             reserva.Contacto = txtContacto.Text;
             reserva.Telefono = txtTelefono.Text;
-            dbReservas.nueva(reserva);
+            if( modo == 1)
+              dbReservas.nueva(reserva);
+            else if( modo == 2 )
+              dbReservas.actualizar(reserva);
             formListaReservas.refrescarTabla();
             this.Close();
         }

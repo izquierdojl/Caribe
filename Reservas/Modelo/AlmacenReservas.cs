@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,21 @@ namespace Caribe.Reservas.Modelo
             return null;
         }
 
+        public void actualizar(Reserva reservaActualizada)
+        {
+            Reserva reservaExistente = obtener(reservaActualizada.Id);
+            if (reservaExistente != null)
+            {
+                Type tipoReserva = typeof(Reserva);
+                PropertyInfo[] propiedades = tipoReserva.GetProperties();
+
+                foreach (PropertyInfo propiedad in propiedades)
+                {
+                    object valor = propiedad.GetValue(reservaActualizada);
+                    propiedad.SetValue(reservaExistente, valor);
+                }
+            }
+        }
 
         public int longitud()
         {
