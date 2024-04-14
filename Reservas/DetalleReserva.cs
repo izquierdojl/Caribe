@@ -1,14 +1,4 @@
 ﻿using Caribe.Reservas.Modelo;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Caribe.Reservas
 {
@@ -20,25 +10,42 @@ namespace Caribe.Reservas
         private ListaReservas formListaReservas;
         private Reserva reserva;
 
-        public DetalleReserva(AlmacenReservas dbReservas, int id, int modo, ListaReservas formListaReservas )
+        public DetalleReserva(AlmacenReservas dbReservas, int id, int modo, ListaReservas formListaReservas)
         {
+
             InitializeComponent();
 
             this.dbReservas = dbReservas;
             this.formListaReservas = formListaReservas;
             this.modo = modo;
 
-            if( modo == 1 ) // añadir
+            ToolTip tooltip = new ToolTip();
+            tooltip.SetToolTip(txtFecha,"Indique la fecha");
+            tooltip.SetToolTip(txtContacto, "Indique el nombre del contacto de la reserva (obligatorio");
+
+
+            if (modo == 1) // añadir
             {
                 this.reserva = new Reserva();
                 txtFecha.Value = DateTime.Now;
-            }else if( modo == 2 ) // editar
+            }
+            else if (modo == 2) // editar
             {
                 this.reserva = dbReservas.obtener(id);
-                txtFecha.Value  = reserva.Fecha;
-                txtContacto.Text = reserva.Contacto;    
-                txtTelefono.Text = reserva.Telefono;   
+                txtFecha.Value = reserva.Fecha;
+                txtContacto.Text = reserva.Contacto;
+                txtTelefono.Text = reserva.Telefono;
+                comboTipo.SelectedItem = reserva.Tipo;
+                numericPersonas.Value = reserva.Personas;
+                radioResBufe.Checked = reserva.ResBufe;
+                radioResCarta.Checked = reserva.ResCarta;
+                radioResChef.Checked = reserva.ResChef;
+                radioResNoPrecisa.Checked = reserva.ResNo;
+                numericJornadas.Value = reserva.Jornadas;
+                checkRequiereHabitaciones.Checked = reserva.Habitaciones;
             }
+
+            evaluaVisibles();
 
         }
 
@@ -49,15 +56,66 @@ namespace Caribe.Reservas
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            reserva.Fecha = txtFecha.Value;
-            reserva.Contacto = txtContacto.Text;
-            reserva.Telefono = txtTelefono.Text;
-            if( modo == 1)
-              dbReservas.nueva(reserva);
-            else if( modo == 2 )
-              dbReservas.actualizar(reserva);
-            formListaReservas.refrescarTabla();
-            this.Close();
+            if (!String.IsNullOrWhiteSpace(txtContacto.Text))
+            {
+                reserva.Fecha = txtFecha.Value;
+                reserva.Contacto = txtContacto.Text;
+                reserva.Telefono = txtTelefono.Text;
+                if( comboTipo.SelectedIndex >= 0 )
+                    reserva.Tipo = comboTipo.SelectedItem.ToString();
+                reserva.Personas = (int)numericPersonas.Value;
+                reserva.ResBufe = radioResBufe.Checked;
+                reserva.ResCarta = radioResCarta.Checked;
+                reserva.ResChef = radioResChef.Checked;
+                reserva.ResNo = radioResNoPrecisa.Checked;
+                reserva.Jornadas = (int)numericJornadas.Value;
+                reserva.Habitaciones = checkRequiereHabitaciones.Checked;
+                if (modo == 1)
+                    dbReservas.nueva(reserva);
+                else if (modo == 2)
+                    dbReservas.actualizar(reserva);
+                formListaReservas.refrescarTabla();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("El nombre del contacto es obligatorio", "");
+            }
+        }
+
+        private void evaluaVisibles()
+        {
+            if (comboTipo.SelectedIndex >= 0)
+            {
+
+                String seleccionado = comboTipo.SelectedItem.ToString();
+                if (seleccionado == "Congreso")
+                {
+                    labelJornadas.Visible = true;
+                    numericJornadas.Visible = true;
+                    checkRequiereHabitaciones.Visible = true;
+                }
+                else
+                {
+                    labelJornadas.Visible = false;
+                    numericJornadas.Visible = false;
+                    checkRequiereHabitaciones.Visible = false;
+                }
+            }
+            else
+            {
+                labelJornadas.Visible = false;
+                numericJornadas.Visible = false;
+                checkRequiereHabitaciones.Visible = false;
+
+            }
+
+        }
+
+        private void comboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            evaluaVisibles();
         }
     }
+
 }

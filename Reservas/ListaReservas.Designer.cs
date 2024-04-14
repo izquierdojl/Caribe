@@ -61,7 +61,8 @@
             btnSalir.Size = new Size(33, 35);
             btnSalir.Text = "Salir";
             btnSalir.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnSalir.ToolTipText = "Pulse para abandonar";
+            btnSalir.ToolTipText = "Pulse para abandonar (Alt-F4)";
+            btnSalir.Click += btnSalir_Click;
             // 
             // toolbtnAnadir
             // 
@@ -71,7 +72,7 @@
             toolbtnAnadir.Size = new Size(45, 35);
             toolbtnAnadir.Text = "Nueva";
             toolbtnAnadir.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolbtnAnadir.ToolTipText = "Pulse para añadir reserva";
+            toolbtnAnadir.ToolTipText = "Pulse para añadir reserva (Ins)";
             toolbtnAnadir.Click += toolbtnAnadir_Click;
             // 
             // toolBtnEditar
@@ -82,7 +83,7 @@
             toolBtnEditar.Size = new Size(41, 35);
             toolBtnEditar.Text = "Editar";
             toolBtnEditar.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolBtnEditar.ToolTipText = "Pulse para editar reserva";
+            toolBtnEditar.ToolTipText = "Pulse para editar reserva (INTRO)";
             toolBtnEditar.Click += toolBtnEditar_Click;
             // 
             // toolBtnBorrar
@@ -93,7 +94,7 @@
             toolBtnBorrar.Size = new Size(43, 35);
             toolBtnBorrar.Text = "Borrar";
             toolBtnBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolBtnBorrar.ToolTipText = "Pulse para borrar reserva";
+            toolBtnBorrar.ToolTipText = "Pulse para borrar reserva (Supr)";
             toolBtnBorrar.Click += toolBtnBorrar_Click;
             // 
             // panel1

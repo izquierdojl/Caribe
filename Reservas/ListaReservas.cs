@@ -52,7 +52,8 @@ namespace Caribe
                 tablaReservas.Rows.Add(reserva.Id, reserva.Fecha.ToShortDateString(), reserva.Contacto, reserva.Telefono);
             }
             tablaReservas.AutoResizeColumns(); // ajusta el ancho de las columnas
-            if (posicion != -1) {
+            if (posicion != -1 && tablaReservas.RowCount > 0)
+            {
                 tablaReservas.Rows[posicion].Selected = true;
             }
             tablaReservas.Focus();
@@ -106,6 +107,11 @@ namespace Caribe
             {
                 vistaBorrar();
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
