@@ -20,9 +20,17 @@ namespace Caribe.Reservas
             this.modo = modo;
 
             ToolTip tooltip = new ToolTip();
+            tooltip.IsBalloon = true;
             tooltip.SetToolTip(txtFecha,"Indique la fecha");
             tooltip.SetToolTip(txtContacto, "Indique el nombre del contacto de la reserva (obligatorio");
-
+            tooltip.SetToolTip(txtTelefono, "Indique el número de teléfono");
+            tooltip.SetToolTip(comboTipo, "Indique el tipo de reserva");
+            tooltip.SetToolTip(numericPersonas, "Indique el número de personas de la reserva");
+            tooltip.SetToolTip(groupRestaurante, "Seleccione el tipo de servicio de restaurante si lo precisa");
+            tooltip.SetToolTip(numericJornadas, "Indique el número de jornadas");
+            tooltip.SetToolTip(checkRequiereHabitaciones, "Indique si la reserva requiere habitaciones");
+            tooltip.SetToolTip(btnGuardar, "Pulse para guardar los datos introducidos");
+            tooltip.SetToolTip(btnCancelar, "Pulse para descartar los cambios");
 
             if (modo == 1) // añadir
             {
