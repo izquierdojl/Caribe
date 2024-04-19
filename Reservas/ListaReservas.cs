@@ -54,7 +54,16 @@ namespace Caribe
             tablaReservas.AutoResizeColumns(); // ajusta el ancho de las columnas
             if (posicion != -1 && tablaReservas.RowCount > 0)
             {
-                tablaReservas.Rows[posicion].Selected = true;
+                if (posicion < tablaReservas.RowCount)
+                {
+                    tablaReservas.Rows[posicion].Selected = true;
+                    tablaReservas.CurrentCell = tablaReservas.Rows[posicion].Cells[0]; 
+                }
+                else
+                {
+                    tablaReservas.Rows[tablaReservas.RowCount - 1].Selected = true;
+                    tablaReservas.CurrentCell = tablaReservas.Rows[tablaReservas.RowCount - 1].Cells[0];
+                }
             }
             tablaReservas.Focus();
 
